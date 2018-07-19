@@ -82,15 +82,15 @@ Although the above algorithm does work for $\alpha = \sqrt{2}$, we can use a nic
 \]
 From the above formulas for the $1 < \alpha < 2$ case, 
 \[
-	S_{\sqrt{2}}(n) = \frac{(n + k)(n + k + 1)}{2} - S_{2 + \sqrt{2}}(k)
+S_{\sqrt{2}}(n) = \frac{(n + k)(n + k + 1)}{2} - S_{2 + \sqrt{2}}(k)
 \]
 Applying the $\alpha > 2$ step to $S_{2 + \sqrt{2}}(k)$, we have 
 \[
-	S_{2 + \sqrt{2}}(k) = k(k+1) + S_{\sqrt{2}}(k)
+S_{2 + \sqrt{2}}(k) = k(k+1) + S_{\sqrt{2}}(k)
 \]
 Substituting this into the previous equation, we obtain the recurrence relation 
 \[
-	S_{\sqrt{2}}(n) = \frac{(n+k)(n+k+1)}{2} - k(k+1) - S_{\sqrt{2}}(k)
+S_{\sqrt{2}}(n) = \frac{(n+k)(n+k+1)}{2} - k(k+1) - S_{\sqrt{2}}(k)
 \]
 Because each term in this expression is an integer, the only place where floating point approximations are required is in the calculation of $k$. Therefore, we only need the number of decimal places needed to ensure that the value $\lfloor n (\alpha - 1) \rfloor$ is accurate. If $n \le 10^{d}$, then $d$ decimal places are needed to ensure that there are sufficient decimal places. Since $\sqrt{2}$ has one digit before the decimal place, in order to calculate $S_{\sqrt{2}}$ up to $n = 10^{d}$, we need to calculate $\sqrt{2}$ using a precision of $d+1$ digits. A Python implementation of the algorithm is below.
 \begin{lstlisting}
